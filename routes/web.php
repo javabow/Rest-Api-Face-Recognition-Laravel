@@ -44,14 +44,6 @@ Route::post('/elo/input', 'EloController@input');
 
 Route::put('/elo/update/{id}', 'EloController@update');
 
-// Relasi
-
-Route::get('/pengguna', 'PenggunaController@index'); // One to One
-
-Route::get('/article', 'WebController@index'); // One to Many
-
-Route::get('/anggota', 'DikiController@index'); // Many to Many
-
 
 // Guide Javabow
 
