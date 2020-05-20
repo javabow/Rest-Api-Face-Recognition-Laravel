@@ -27,3 +27,9 @@ Route::get('guide/{url}', 'GuideRestController@show');
 Route::post('guide', 'GuideRestController@store');
 Route::put('guide/{guide}', 'GuideRestController@update');
 Route::delete('guide/{guide}', 'GuideRestController@delete');
+
+Route::get('mahasiswa', 'MahasiswaController@index');
+Route::get('mahasiswa/{id}', 'MahasiswaController@show');
+Route::post('mahasiswa', 'MahasiswaController@store');
+Route::put('mahasiswa/{id}', 'MahasiswaController@update');
+Route::delete('mahasiswa/{id}', 'MahasiswaController@delete');
