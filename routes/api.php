@@ -33,3 +33,9 @@ Route::get('mahasiswa/{id}', 'MahasiswaController@show');
 Route::post('mahasiswa', 'MahasiswaController@store');
 Route::put('mahasiswa/{id}', 'MahasiswaController@update');
 Route::delete('mahasiswa/{id}', 'MahasiswaController@delete');
+
+Route::get('matakuliah', 'MatakuliahController@index');
+Route::get('matakuliah/{hari}/{time}/', 'MatakuliahController@show');
+Route::post('matakuliah', 'MatakuliahController@store');
+Route::put('matakuliah/{kode_matkul}', 'MatakuliahController@update');
+Route::delete('matakuliah/{kode_matkul}', 'MatakuliahController@delete');
