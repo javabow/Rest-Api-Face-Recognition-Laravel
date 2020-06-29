@@ -20,6 +20,14 @@ class MahasiswaController extends Controller
         return $id;
     }
 
+    public function search($query)
+    {
+
+        $result = Mahasiswa::like('nama', $query)->get();
+
+        return $result;
+    }
+
     public function store(Request $request)
     {
         $guide = Mahasiswa::create($request->all());
@@ -27,16 +35,17 @@ class MahasiswaController extends Controller
         return response()->json($guide, 201);
     }
 
-    public function update(Request $request, Mahasiswa $guide)
+    public function update(Request $request, $id)
     {
-        $guide->update($request->all());
 
-        return response()->json($guide, 200);
+        $result = Mahasiswa::whereId($id)->update($request->all());
+
+        return response()->json($result, 200);
     }
 
-    public function delete(Mahasiswa $guide)
+    public function delete($id)
     {
-        $guide->delete();
+        $result = Mahasiswa::whereId($id)->delete();
 
         return response()->json(null, 204);
     }

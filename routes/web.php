@@ -48,3 +48,12 @@ Route::put('/elo/update/{id}', 'EloController@update');
 // Guide Javabow
 
 Route::get('toram/guide', 'GuideController@index');
+
+// Training
+
+Route::get('/training', 'TrainingController@index');
+Route::get('/training/add', 'TrainingController@add');
+Route::post('/training/input', 'TrainingController@train');
+Route::get('/training/edit/{id}', 'TrainingController@edit');
+Route::put('/training/update/{id}', 'TrainingController@update');
+Route::get('/training/delete/{id}/{nim}', 'TrainingController@delete');
