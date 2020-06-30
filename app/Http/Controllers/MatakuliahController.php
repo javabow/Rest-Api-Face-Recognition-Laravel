@@ -17,12 +17,19 @@ class MatakuliahController extends Controller
     public function show($hari, $time)
     {
 
-        $matkul=Matakuliah::where('hari','=',$hari)
-        ->whereTime('jam_mulai', '<=', $time)
-        ->whereTime('jam_selesai', '>=', $time)
-        ->get();
-
-        return response()->json($matkul, 200);
+        if (Matakuliah::where('hari','=',$hari)
+            ->whereTime('jam_mulai', '<=', $time)
+            ->whereTime('jam_selesai', '>=', $time)->exists())
+        {
+            
+            $matkul = Matakuliah::where('hari','=',$hari)->whereTime('jam_mulai', '<=', $time)->whereTime('jam_selesai', '>=', $time)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($matkul, 200);
+        
+        } else {
+            return response()->json([
+            "message" => "Mata Kuliah not found"
+            ], 404);
+        }
 
     }
 

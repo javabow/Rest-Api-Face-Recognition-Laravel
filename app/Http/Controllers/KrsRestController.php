@@ -17,11 +17,14 @@ class KrsRestController extends Controller
     public function show($kode_matkul, $nim)
     {
 
-        $matkul=KrsRest::where('kode_matkul','=',$kode_matkul)
-        ->where('nim', '=', $nim)
-        ->get();
-
-        return response()->json($matkul, 200);
+        if (KrsRest::where('kode_matkul','=',$kode_matkul)->where('nim', '=', $nim)->exists()) {
+            $krs = KrsRest::where('kode_matkul','=',$kode_matkul)->where('nim', '=', $nim)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($krs, 200);
+        } else {
+            return response()->json([
+            "message" => "KRS not found"
+            ], 404);
+         }
 
     }
 
