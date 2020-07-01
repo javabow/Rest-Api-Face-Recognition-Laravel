@@ -21,9 +21,6 @@ Route::get('/siswa', 'SiswaController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('halo', function () {
-	return "Halo, Selamat datang di tutorial laravel www.malasngoding.com";
-});
 
 Route::get('login-sistem', function () {
 	return view('blog');
@@ -57,3 +54,16 @@ Route::post('/training/input', 'TrainingController@train');
 Route::get('/training/edit/{id}', 'TrainingController@edit');
 Route::put('/training/update/{id}', 'TrainingController@update');
 Route::get('/training/delete/{id}/{nim}', 'TrainingController@delete');
+
+//login and register admin
+// Route::get('/login', 'AdminController@login')->name('login');
+// Route::post('/loginpost', 'AdminController@loginPost');
+// Route::get('/register', 'AdminController@register');
+// //Route::post('/registerpost', 'AdminController@registerPost');
+// Route::get('/logout', 'AdminController@logout');
+
+// Route::any('registerpost', 'AdminController@registerPost')->name('registerpost');
+// Route::any('loginpost', 'AdminController@loginPost')->name('loginpost');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

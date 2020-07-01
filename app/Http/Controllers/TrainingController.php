@@ -11,23 +11,36 @@ use File;
 class TrainingController extends Controller
 {
     
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 	public function index()
 	{
-		$endpoint = "http:/localhost:9000/api/mahasiswa";
+            
+        	$endpoint = "http:/localhost:9000/api/mahasiswa";
 
-		$client = new \GuzzleHttp\Client();
+			$client = new \GuzzleHttp\Client();
 
-		$response = $client->request('GET', $endpoint);
+			$response = $client->request('GET', $endpoint);
 
-		$statusCode = $response->getStatusCode();
-		$content = json_decode($response->getBody(), true);
+			$statusCode = $response->getStatusCode();
+			$content = json_decode($response->getBody(), true);
 
-		if ($statusCode == 200) {
-			return view('training', ['mahasiswa' => $content]);
-		}else{
-			echo "Error API";
-		}
-		
+			if ($statusCode == 200) {
+				return view('training', ['mahasiswa' => $content]);
+			}else{
+				echo "Error API";
+			}
+
+        
+	
 	}
 
 	public function search($query)
