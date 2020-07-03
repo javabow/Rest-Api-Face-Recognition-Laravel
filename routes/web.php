@@ -48,12 +48,12 @@ Route::get('toram/guide', 'GuideController@index');
 
 // Training
 
-Route::get('/training', 'TrainingController@index');
+Route::get('/training', 'TrainingController@index')->name('training');
 Route::get('/training/add', 'TrainingController@add');
 Route::post('/training/input', 'TrainingController@train');
-Route::get('/training/edit/{id}', 'TrainingController@edit');
+Route::get('/training/edit/{id}', 'TrainingController@edit')->name('edit')->middleware('checkadmin');
 Route::put('/training/update/{id}', 'TrainingController@update');
-Route::get('/training/delete/{id}/{nim}', 'TrainingController@delete');
+Route::get('/training/delete/{id}/{nim}', 'TrainingController@delete')->name('delete')->middleware('checkadmin');
 
 //login and register admin
 // Route::get('/login', 'AdminController@login')->name('login');

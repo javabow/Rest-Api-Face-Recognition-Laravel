@@ -11,7 +11,7 @@ class Mahasiswa extends Model
 	protected $table = "mahasiswa";
 
 	//lock untuk fill yang bisa diisi dalam table yang dipilih
-	protected $fillable = ['nama','nim','alamat'];
+	protected $fillable = ['nama','nim','alamat','id_admin'];
 
 	public function getRouteKeyName()
 	{

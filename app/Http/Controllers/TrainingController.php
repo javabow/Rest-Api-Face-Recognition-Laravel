@@ -109,6 +109,7 @@ class TrainingController extends Controller
 
 	public function edit($id)
     {
+
     	$endpoint = "http:/localhost:9000/api/mahasiswa/$id";
 
 		$client = new \GuzzleHttp\Client();
@@ -216,7 +217,8 @@ class TrainingController extends Controller
         $this->validate($request,[
             'nim' => 'required',
             'nama' => 'required',
-            'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:4096'
+            'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:4096',
+            'id_admin' => 'required'
         ]);
 
         // menyimpan data file yang diupload ke variabel $file
@@ -237,7 +239,8 @@ class TrainingController extends Controller
             $response = $client->request('POST', $endpoint, [
                 'form_params' => [
                     'nim' => $request->nim,
-                    'nama' => $request->nama 
+                    'nama' => $request->nama,
+                    'id_admin' => $request->id_admin
                 ]
             ]);
 

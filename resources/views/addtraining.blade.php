@@ -12,6 +12,8 @@
 
                         {{ csrf_field() }}
 
+                        <input type="hidden" name="id_admin" value="{{ Auth::id() }}">
+
                         <div class="form-group">
                             <label><b>NIM</b></label>
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nim" class="form-control" placeholder="NIM Mahasiswa">
@@ -49,11 +51,15 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Simpan">
+                            <input type="submit" class="btn btn-success" value="Simpan" data-toggle="modal" data-target="#spinnerModal" data-backdrop="static" data-keyboard="false">
                         </div>
 
                     </form>
-
+                    <div class="modal" tabindex="-1" role="dialog" id="spinnerModal">
+                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                            <span class="fa fa-spinner fa-spin fa-3x w-100" style="color: white;"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
 @include('template.footer')
