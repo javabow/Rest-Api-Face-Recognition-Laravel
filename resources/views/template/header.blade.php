@@ -24,6 +24,22 @@
   <!-- image view -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <style>
+
+    #container {
+        margin: 0px auto;
+        width: 500px;
+        height: 375px;
+        border: 10px #333 solid;
+    }
+    #videoElement {
+        width: 500px;
+        height: 375px;
+        background-color: #666;
+    }
+
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -51,6 +67,13 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/training/detection">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Test Detection</span></a>
+      </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
      <!--  <div class="text-center d-none d-md-inline">

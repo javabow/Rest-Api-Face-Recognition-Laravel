@@ -50,6 +50,7 @@ Route::get('toram/guide', 'GuideController@index');
 
 Route::get('/training', 'TrainingController@index')->name('training');
 Route::get('/training/add', 'TrainingController@add');
+Route::get('/training/detection', 'TrainingController@detection')->name('detection');
 Route::post('/training/input', 'TrainingController@train');
 Route::get('/training/edit/{id}', 'TrainingController@edit')->name('edit')->middleware('checkadmin');
 Route::put('/training/update/{id}', 'TrainingController@update');

@@ -1,5 +1,5 @@
-#!C:/Users/Javabow/AppData/Local/Programs/Python/Python37/python.exe
-#print ("Content-Type: text/html\n")
+#!C:/ProgramData/Anaconda3/python.exe
+
 import face_recognition
 import pickle
 import os
@@ -7,7 +7,7 @@ from PIL import Image
 import glob
 import sys
 
-dataset_file = 'dataset-faces.dat'
+dataset_file = 'all-dataset-faces.dat'
 
 nimBaru = sys.argv[1]
 
@@ -15,6 +15,8 @@ nimLama = sys.argv[2]
 
 all_face_encodings = {}
 image_list = []
+
+print(os.path.join('C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/gambar_mahasiswa/',nimBaru))
 
 if os.path.exists(dataset_file):
     # "with" statements are very handy for opening files.
@@ -25,7 +27,7 @@ if os.path.exists(dataset_file):
 
 all_face_encodings.pop(nimLama, None)
 
-for root, dirs, files in os.walk(os.path.join('E:/web/htdocs/test/Rest-Api-Face-Recognition-Laravel/public/gambar_mahasiswa/',nimBaru)):
+for root, dirs, files in os.walk(os.path.join('C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/gambar_mahasiswa/',nimBaru)):
     print(os.path.join(root,'*.jpg'))
     for filename in glob.glob(os.path.join(root,'*.jpg')):
         im = Image.open(filename)
@@ -37,3 +39,5 @@ for root, dirs, files in os.walk(os.path.join('E:/web/htdocs/test/Rest-Api-Face-
 # Now we "sync" our database
 with open(dataset_file,'wb') as wfp:
     pickle.dump(all_face_encodings, wfp)
+
+print(all_face_encodings)

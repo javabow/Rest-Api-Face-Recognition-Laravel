@@ -10,7 +10,7 @@ use File;
 
 class TrainingController extends Controller
 {
-    
+
 	/**
      * Create a new controller instance.
      *
@@ -23,7 +23,7 @@ class TrainingController extends Controller
 
 	public function index()
 	{
-            
+
         	$endpoint = "http:/localhost:9000/api/mahasiswa";
 
 			$client = new \GuzzleHttp\Client();
@@ -39,8 +39,8 @@ class TrainingController extends Controller
 				echo "Error API";
 			}
 
-        
-	
+
+
 	}
 
 	public function search($query)
@@ -59,14 +59,14 @@ class TrainingController extends Controller
 		}else{
 			echo "Error API";
 		}
-		
+
 	}
 
 	public function delete($id, $nim)
     {
-    
+
     	//POP data yang akan dihapus dimana tersimpan dalam dataset
-		$command = escapeshellcmd("C:/Users/Javabow/AppData/Local/Programs/Python/Python37/python.exe E:/web/htdocs/test/Rest-Api-Face-Recognition-Laravel/public/delete_encoded.py $nim");
+		$command = escapeshellcmd("C:/ProgramData/Anaconda3/python.exe C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/delete_encoded.py $nim");
 
 		// echo (shell_exec($command));
 
@@ -93,18 +93,18 @@ class TrainingController extends Controller
 			}else{
 				echo "Error API";
 			}
-	    	
+
 	    }
 
-    	
-    
+
+
     }
 
 	public function add()
     {
-    
+
     	return view('addtraining');
-    
+
     }
 
 	public function edit($id)
@@ -123,12 +123,12 @@ class TrainingController extends Controller
 		}else{
 			echo "Error API";
 		}
-    
+
     }
 
     public function update($id, Request $request)
     {
-    	
+
     	$this->validate($request,[
             'nim' => 'required',
             'nimlama' => 'required',
@@ -138,13 +138,13 @@ class TrainingController extends Controller
 
         $endpoint = "http:/localhost:9000/api/mahasiswa/$id";
         try {
-            
+
             $client = new \GuzzleHttp\Client();
 
             $response = $client->request('PUT', $endpoint, [
                 'json' => [
                     'nim' => $request->nim,
-                    'nama' => $request->nama 
+                    'nama' => $request->nama
                 ]
             ]);
 
@@ -154,7 +154,7 @@ class TrainingController extends Controller
             return $e->getResponse()->getBody()->getContents();
         }
 
-        
+
 
         if ($statusCode == 200) {
 
@@ -195,7 +195,7 @@ class TrainingController extends Controller
 				}
 
 				$nim = $request->nim;
-				$command = escapeshellcmd("C:/Users/Javabow/AppData/Local/Programs/Python/Python37/python.exe E:/web/htdocs/test/Rest-Api-Face-Recognition-Laravel/public/mencoba4.py $nim $nimlama");
+				$command = escapeshellcmd("C:/ProgramData/Anaconda3/python.exe C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/mencoba4.py $nim $nimlama");
 				if (shell_exec($command)) {
     				Session::flash('message', 'Sukses Edit Data Training !');
 
@@ -203,13 +203,22 @@ class TrainingController extends Controller
     			}
         	}
         Session::flash('message', 'Sukses Edit Data Training !');
-        return redirect('/training');   
-        
+        return redirect('/training');
+
         }else{
             echo "Error API";
         }
 
     }
+
+	public function detection(){
+
+        $command = escapeshellcmd("C:/ProgramData/Anaconda3/python.exe C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/SmoothStream-master/Streamer.py -s 192.168.0.7");
+        shell_exec($command);
+        return view('face_detection');
+
+
+	}
 
 	public function train(Request $request)
     {
@@ -221,7 +230,7 @@ class TrainingController extends Controller
             'id_admin' => 'required'
         ]);
 
-        // menyimpan data file yang diupload ke variabel $file
+        // // menyimpan data file yang diupload ke variabel $file
         $file = $request->file('gambar');
         $nama_file = time()."_".$file->getClientOriginalName();
 
@@ -233,7 +242,7 @@ class TrainingController extends Controller
 
         $endpoint = "http:/localhost:9000/api/mahasiswa";
         try {
-            
+
             $client = new \GuzzleHttp\Client();
 
             $response = $client->request('POST', $endpoint, [
@@ -250,10 +259,12 @@ class TrainingController extends Controller
             return $e->getResponse()->getBody()->getContents();
         }
 
+		$statusCode = 201;
+
         $nimlama = 'none';
 
 		$nim = $request->nim;
-		$command = escapeshellcmd("C:/Users/Javabow/AppData/Local/Programs/Python/Python37/python.exe E:/web/htdocs/test/Rest-Api-Face-Recognition-Laravel/public/mencoba4.py $nim $nimlama");
+		$command = escapeshellcmd("C:/ProgramData/Anaconda3/python.exe C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/mencoba4.py $nim $nimlama");
 
         if ($statusCode == 201) {
         	if (shell_exec($command)) {
@@ -261,11 +272,11 @@ class TrainingController extends Controller
 
     			return redirect('/training');
     		}
-            
+
         }else{
             echo "Error API";
         }
-    
+
     }
 
 }

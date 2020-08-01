@@ -1,3 +1,5 @@
+#!C:/ProgramData/Anaconda3/python.exe
+
 import face_recognition
 import cv2
 import numpy as np
@@ -11,7 +13,7 @@ from requests import post
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 #!C:/Users/Javabow/AppData/Local/Programs/Python/Python37/python.exe
-print ("Content-Type: text/html\n")
+# print ("Content-Type: text/html\n")
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
 #   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
 #   2. Only detect faces in every other frame of video.
@@ -25,7 +27,7 @@ video_capture = cv2.VideoCapture(0)
 # video_capture = cv2.VideoCapture('http://192.168.0.3:9000/video')
 
 # Load face encodings
-with open('faces1.dat', 'rb') as f:
+with open('C:/xampp/htdocs/Rest-Api-Face-Recognition-Laravel/public/dataset-faces.dat', 'rb') as f:
 	all_face_encodings = pickle.load(f)
 
 # Grab the list of names and the list of encodings
@@ -88,15 +90,15 @@ while True:
 
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                login_data = dict(nama=name, alamat='Budi Luhur')
-                ra = requests.get(URL, headers=headers)
-                print (ra.json())
-                print (URL)
-                nim = os.path.splitext(name)[0]
-                JSON = ra.json();
-                for i in JSON:
-                    kodeMatkul = i['kode_matkul']
-                    print (nim)
+                # login_data = dict(nama=name, alamat='Budi Luhur')
+                # ra = requests.get(URL, headers=headers)
+                # print (ra.json())
+                # print (URL)
+                # nim = os.path.splitext(name)[0]
+                # JSON = ra.json();
+                # for i in JSON:
+                #     kodeMatkul = i['kode_matkul']
+                #     print (nim)
 
                 # url_check_krs = 'https://www.javabow.com/laravel/api/krs/' + kodeMatkul + '/' + nim
                 # print(url_check_krs)
