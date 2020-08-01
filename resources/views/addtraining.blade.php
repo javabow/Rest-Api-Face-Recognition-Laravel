@@ -7,7 +7,7 @@
                     <a href="/training" class="btn btn-primary">Kembali</a>
                     <br/>
                     <br/>
-                    
+
                     <form method="post" action="/training/input" enctype="multipart/form-data">
 
                         {{ csrf_field() }}
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <b>Gambar Thumbnail</b><br/>
+                            <b>Gambar Thumbnail <span style="color: red;font-weight: bold;">.jpg ONLY !!</span></b><br/>
                             <input type="file" name="gambar">
                             <img src="" id="img" class="img" height="300px" width="300px">
                             <script>

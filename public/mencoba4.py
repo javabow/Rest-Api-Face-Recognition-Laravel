@@ -7,7 +7,7 @@ from PIL import Image
 import glob
 import sys
 
-dataset_file = 'all-dataset-faces.dat'
+dataset_file = 'dataset-faces.dat'
 
 nimBaru = sys.argv[1]
 
