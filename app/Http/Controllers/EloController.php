@@ -23,6 +23,40 @@ class EloController extends Controller
     
     }
 
+    public function absensiRecognition($kode_matkul, $nim, $date, $kode_kelas)
+    {
+
+        $check = $this->show($kode_matkul, $nim, $date);
+
+        $deco = json_decode($check);
+
+        var_dump($deco);
+
+        $status = $check->status();
+
+        if ($status == 200) {
+            
+            echo "Sudah Absen";
+
+            //return response(200);
+
+        }else{
+
+            $data = [
+                    'nim' => $nim,
+                    'kode_matkul' => $kode_matkul,
+                    'kode_kelas' => $kode_kelas,
+                    'tanggal' => $date 
+            ];
+
+            //$this->store($data);
+
+            echo "Sukses Absensi";
+
+        }
+
+    }
+
     public function input(Request $request)
     {
 
