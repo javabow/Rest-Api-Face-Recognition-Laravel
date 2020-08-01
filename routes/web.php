@@ -21,46 +21,11 @@ Route::get('/siswa', 'SiswaController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('halo', function () {
-	return "Halo, Selamat datang di tutorial laravel www.malasngoding.com";
-});
 
 Route::get('login-sistem', function () {
 	return view('blog');
 });
 
-Route::get('dosen', 'DosenController@index');
-
-//Route::get('/pegawai/{nama}', 'PegawaiController@index');
-
-//Route::get('/formulir', 'PegawaiController@formulir');
-
-//Route::post('/formulir/proses', 'PegawaiController@proses');
-
-Route::get('/blog', 'BlogController@home');
-
-Route::get('/blog/tentang', 'BlogController@tentang');
-
-Route::get('/blog/kontak', 'BlogController@kontak');
-
-//route CRUD
-Route::get('/pegawai','PegawaiController@index');
-
-Route::get('/pegawai/tambah','PegawaiController@tambah');
-
-Route::post('/pegawai/store','PegawaiController@store');
-
-Route::get('/pegawai/edit/{id}','PegawaiController@edit');
-
-Route::post('/pegawai/update','PegawaiController@update');
-
-Route::get('/pegawai/hapus/{id}','PegawaiController@hapus');
-
-Route::get('/pegawai/cari','PegawaiController@cari');
-
-Route::get('/pegawai/input', 'PegawaiController@input');
- 
-Route::post('/pegawai/proses', 'PegawaiController@proses');
 
 //Eloquent
 
@@ -76,15 +41,30 @@ Route::post('/elo/input', 'EloController@input');
 
 Route::put('/elo/update/{id}', 'EloController@update');
 
-// Relasi
-
-Route::get('/pengguna', 'PenggunaController@index'); // One to One
-
-Route::get('/article', 'WebController@index'); // One to Many
-
-Route::get('/anggota', 'DikiController@index'); // Many to Many
-
 
 // Guide Javabow
 
 Route::get('toram/guide', 'GuideController@index');
+
+// Training
+
+Route::get('/training', 'TrainingController@index')->name('training');
+Route::get('/training/add', 'TrainingController@add');
+Route::get('/training/detection', 'TrainingController@detection')->name('detection');
+Route::post('/training/input', 'TrainingController@train');
+Route::get('/training/edit/{id}', 'TrainingController@edit')->name('edit')->middleware('checkadmin');
+Route::put('/training/update/{id}', 'TrainingController@update');
+Route::get('/training/delete/{id}/{nim}', 'TrainingController@delete')->name('delete')->middleware('checkadmin');
+
+//login and register admin
+// Route::get('/login', 'AdminController@login')->name('login');
+// Route::post('/loginpost', 'AdminController@loginPost');
+// Route::get('/register', 'AdminController@register');
+// //Route::post('/registerpost', 'AdminController@registerPost');
+// Route::get('/logout', 'AdminController@logout');
+
+// Route::any('registerpost', 'AdminController@registerPost')->name('registerpost');
+// Route::any('loginpost', 'AdminController@loginPost')->name('loginpost');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
